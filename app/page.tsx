@@ -1,17 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "./components/Navbar";
 import template1 from "../public/template1.png";
 export default function Home() {
   return (
-    <div className="w-360 h-645.75 overflow-hidden bg-white ">
+    <div className="w-360 h-645.75 overflow-hidden mx-auto bg-white ">
       <div className="w-183.5 h-full left-88.25 relative ">
         <section id="home">
-          <div className=" h-111 flex justify-center bg-linear-to-b from-[#FFFFFF] to-[#D7E0F0]">
+          <div className="w-full h-111 flex justify-center bg-linear-to-b from-[#FFFFFF] to-[#D7E0F0]">
             <Navbar />
             <div className="pt-28 text-center whitespace-break-spaces w-99.75">
               <p className="font-instrument-serif italic text-[48px] text-[#433D3D]">The <span className="text-[#1851C1]">Digital Space</span> for families to <span className="text-[#1851C1]">plan & invite!</span></p>
               <p className="text-lg text-[#433D3D]">Create invitations, plan events, share details, and connect families beautifully</p>
-              <button className="bg-[#1851C1] w-41.75 h-11.5 rounded-[40px] text-lg font-semibold mt-4 cursor-pointer">Get Started</button>
+              <Link href={"/create"} >
+                <button className="bg-[#1851C1] w-41.75 h-11.5 rounded-[40px] text-lg font-semibold mt-4 cursor-pointer">Get Started</button>
+
+              </Link>
             </div>
           </div>
         </section>        

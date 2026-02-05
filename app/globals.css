@@ -11,6 +11,12 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-instrument-serif: var(--font-instrument-serif);
+  
+  --spacing-10\.25: 2.5625rem;
+  --spacing-11\.25: 2.8125rem;
+  --spacing-25\.25: 6.3125rem;
+  --spacing-46\.5: 11.625rem;
+  --spacing-103\.5: 25.875rem;
 }
 
 @media (prefers-color-scheme: dark) {
