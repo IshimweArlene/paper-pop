@@ -11,6 +11,7 @@ import { jsPDF } from 'jspdf';
 
 const Preview = () => {
     const [data, setData] = useState<InvitationData | null>(null);
+    const [shareLink, setShareLink] = useState('');
     const [copied, setCopied] = useState(false);
     const previewRef = useRef<HTMLDivElement>(null);
 
@@ -36,18 +37,17 @@ const Preview = () => {
         }
     }, []);
 
-    const generateShareLink = () => {
-        if (!data) return '';
-        try {
-            const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-            const baseUrl = window.location.origin + '/share';
-            return `${baseUrl}?data=${encoded}`;
-        } catch (e) {
-            return '';
+    useEffect(() => {
+        if (data) {
+            try {
+                const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+                const baseUrl = window.location.origin + '/share';
+                setShareLink(`${baseUrl}?data=${encoded}`);
+            } catch (e) {
+                console.error('Failed to generate share link', e);
+            }
         }
-    };
-
-    const shareLink = generateShareLink();
+    }, [data]);
 
     const handleCopyLink = () => {
         if (!shareLink) return;
@@ -88,8 +88,10 @@ const Preview = () => {
     return (
         <div className="bg-[#D7E0F0] min-h-screen w-full">
             <nav className="w-full h-24 flex items-center gap-4 border-b border-[#DBD3D3] pl-22">
-                <Image src={logo} alt="Logo" width={40} height={32} />
-                <p className="text-[#C99326] text-[10px]">Imena-pop</p>
+                <Link href="/" className="flex items-center gap-4 cursor-pointer group">
+                  <Image src={logo} alt="Logo" width={40} height={32} className="group-hover:scale-110 transition-transform duration-300" />
+                  <p className="text-[#C99326] text-[10px] font-bold tracking-widest uppercase group-hover:text-[#1851C1] transition-colors">Imena-pop</p>
+                </Link>
             </nav>
             <div className="pl-51 pr-51 pt-24 pb-24 flex gap-12 items-center justify-center flex-wrap">
                 <div className="flex flex-col">

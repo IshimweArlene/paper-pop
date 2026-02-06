@@ -44,7 +44,7 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
 
   // Adjusted sizes for Alex Brush script font which needs to be larger to be legible
   const notesLength = data.notes?.length || 0;
-  const notesSize = notesLength > 200 ? 'text-[24px]' : notesLength > 100 ? 'text-[30px]' : 'text-[36px]';
+  const notesSize = notesLength > 200 ? 'text-[20px]' : notesLength > 100 ? 'text-[24px]' : 'text-[36px]';
   
   const agendasCount = data.agendas.length;
   const agendasSize = agendasCount > 6 ? 'text-[14px]' : agendasCount > 4 ? 'text-[16px]' : 'text-[20px]';
@@ -53,7 +53,7 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
     const len = text?.length || 0;
     if (len > 30) return 'text-[35px]';
     if (len > 15) return 'text-[50px]';
-    return 'text-[80px]';
+    return 'text-[65px]';
   };
 
   const titleSize = calculateHeaderSize(data.eventTitle || "Imena");
@@ -72,10 +72,10 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
             
             {/* Header */}
             <div className="w-full flex flex-col items-center px-4">
-                <h1 className={`self-start pl-8 font-alex-brush ${titleSize} text-[#D0DB2D] -mb-6 leading-none wrap-break-word w-full`}>
+                <h1 className={`self-start pl-8 font-instrument-serif ${titleSize} text-[#D0DB2D] -mb-4 leading-none wrap-break-word w-full`}>
                     {data.eventTitle || "Imena"}
                 </h1>
-                <h2 className={`font-alex-brush ${hostSize} text-[#D0DB2D] ml-28 leading-none wrap-break-word text-center max-w-full`}>
+                <h2 className={`font-instrument-serif ${hostSize} text-[#D0DB2D] ml-28 leading-none wrap-break-word text-center max-w-full`}>
                    {data.hostedBy ? `${data.hostedBy}` : "Family"}
                 </h2>
             </div>
@@ -119,11 +119,11 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
              {/* Footer */}
              <div className="flex flex-col items-center w-3/4 mt-2">
                 {data.notes && (
-                    <p className={`mb-2 font-alex-brush text-[#D0DB2D] leading-tight text-center wrap-break-word ${notesSize}`}>
+                    <p className={`mb-2 font-instrument-serif text-[#D0DB2D] leading-tight text-center wrap-break-word ${notesSize}`}>
                         {data.notes}
                     </p>
                 )}
-                <div className="text-center text-[20px] text-gray-400 font-instrument-serif">
+                <div className="text-center text-[16px] text-gray-400 font-instrument-serif">
                     <p>The honor will be ours to have you</p>
                     <p>Welcome!</p>
                 </div>

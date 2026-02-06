@@ -5,6 +5,7 @@ import logo from '@/public/logo.svg'
 import { useState, useEffect } from 'react';
 import InvitationPreview from "@/app/components/InvitationPreview";
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface ProgressIndicatorProps {
   currentStep: number;
@@ -144,7 +145,7 @@ const Create = () => {
         return (
           <>
             <p className="font-instrument-serif text-[32px] text-black italic ">Basic Info</p>
-            <p className="font-bold text-[16px] text-black mb-15">What's the occasion? Let's give it a grand name.</p>
+            <p className="font-bold text-[16px] text-black mb-15">What&apos;s the occasion? Let&apos;s give it a grand name.</p>
             <p className="text-[16px] text-black">Event Title</p>
             <input 
               value={formData.eventTitle}
@@ -256,8 +257,10 @@ const Create = () => {
   return (
     <div className="w-full min-h-screen overflow-hidden">
       <nav className="w-full h-24 flex items-center pl-22">
-        <Image src={logo} alt="Logo" width={40} height={32} />
-        <p className="text-[#C99326] text-[10px]">Imena-pop</p>
+        <Link href="/" className="flex items-center gap-4 cursor-pointer group">
+          <Image src={logo} alt="Logo" width={40} height={32} className="group-hover:scale-110 transition-transform duration-300" />
+          <p className="text-[#C99326] text-[10px] font-bold tracking-widest uppercase group-hover:text-[#1851C1] transition-colors">Imena-pop</p>
+        </Link>
       </nav>
       <div className="flex w-full">
         <form className="w-176.75 pl-27 pb-10" onSubmit={handleFormSubmit}>
