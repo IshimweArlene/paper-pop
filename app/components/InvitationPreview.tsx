@@ -44,15 +44,15 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
 
   // Adjusted sizes for Alex Brush script font which needs to be larger to be legible
   const notesLength = data.notes?.length || 0;
-  const notesSize = notesLength > 200 ? 'text-[20px]' : notesLength > 100 ? 'text-[24px]' : 'text-[36px]';
+  const notesSize = notesLength > 150 ? 'text-[16px]' : notesLength > 100 ? 'text-[20px]' : 'text-[36px]';
   
   const agendasCount = data.agendas.length;
-  const agendasSize = agendasCount > 6 ? 'text-[14px]' : agendasCount > 4 ? 'text-[16px]' : 'text-[20px]';
+  const agendasSize = agendasCount > 5 ? 'text-[10px]' : agendasCount > 3 ? 'text-[12px]' : 'text-[14px]';
 
   const calculateHeaderSize = (text: string) => {
     const len = text?.length || 0;
-    if (len > 30) return 'text-[35px]';
-    if (len > 15) return 'text-[50px]';
+    if (len > 30) return 'text-[30px]';
+    if (len > 15) return 'text-[40px]';
     return 'text-[65px]';
   };
 
@@ -99,9 +99,9 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
 
              {/* Agendas */}
              <div className="flex flex-col items-center flex-1 justify-center w-full px-8">
-                 <h3 className="text-[#D0DB2D] text-[26px] uppercase mb-3">AGENDAS</h3>
+                 <h3 className="text-[#D0DB2D] text-[20px] uppercase mb-1 ">AGENDAS</h3>
                  <div className="flex justify-center w-full">
-                     <ul className={`text-left ${agendasSize} text-gray-200 space-y-1 inline-block`}>
+                     <ul className={`text-left ${agendasSize} text-gray-200 space-y-0.5 inline-block`}>
                          {data.agendas.length > 0 ? (
                             data.agendas.map((item, i) => (
                                 <li key={i}>• {item}</li>
@@ -117,9 +117,9 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
              </div>
 
              {/* Footer */}
-             <div className="flex flex-col items-center w-3/4 mt-2">
+             <div className="flex flex-col items-center w-3/4">
                 {data.notes && (
-                    <p className={`mb-2 font-instrument-serif text-[#D0DB2D] leading-tight text-center wrap-break-word ${notesSize}`}>
+                    <p className={` font-instrument-serif text-[#D0DB2D] leading-tight text-center wrap-break-word ${notesSize}`}>
                         {data.notes}
                     </p>
                 )}

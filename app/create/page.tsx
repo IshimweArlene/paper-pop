@@ -5,7 +5,7 @@ import logo from '@/public/logo.svg'
 import { useState, useEffect } from 'react';
 import InvitationPreview from "@/app/components/InvitationPreview";
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import Link from "next/link";
 
 interface ProgressIndicatorProps {
   currentStep: number;
