@@ -1,8 +1,9 @@
-'use client'
+'use client';
+
 import Image from "next/image";
-import template1 from '@/public/template1.png'
 import logo from '@/public/logo.svg'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import InvitationPreview from "@/app/components/InvitationPreview";
 import { useRouter } from 'next/navigation';
 
 interface ProgressIndicatorProps {
@@ -59,6 +60,18 @@ const Create = () => {
     agendas: [] as string[],
     notes: ''
   });
+
+  useEffect(() => {
+    const stored = localStorage.getItem('invitationData');
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        setFormData(parsed);
+      } catch (e) {
+        console.error('Failed to load stored data', e);
+      }
+    }
+  }, []);
 
   const updateFormData = (field: string, value: string) => {
     setFormData(prev => ({
@@ -154,20 +167,21 @@ const Create = () => {
             <div className="flex w-[414px] gap-4">
               <div>
                 <p className="text-[16px] text-black">Event Date</p>
-                <input 
-                  type="text"
-                  value={formData.eventDate}
-                  onChange={(e) => updateFormData('eventDate', e.target.value)}
-                  className="w-full flex-1 h-10.25 border border-[rgba(215,224,240,1)] mb-4 focus:outline-none text-black" 
-                />
+                  <input 
+                    type="date"
+                    min={new Date().toISOString().split('T')[0]}
+                    value={formData.eventDate}
+                    onChange={(e) => updateFormData('eventDate', e.target.value)}
+                    className="w-full flex-1 h-10.25 border border-[rgba(215,224,240,1)] mb-4 focus:outline-none text-black px-2" 
+                  />
               </div>
               <div>
                 <p className="text-[16px] text-black">Event Time</p>
                 <input 
-                  type="text"
+                  type="time"
                   value={formData.eventTime}
                   onChange={(e) => updateFormData('eventTime', e.target.value)}
-                  className="w-full flex-1 h-10.25 border border-[rgba(215,224,240,1)] mb-4 focus:outline-none text-black" 
+                  className="w-full flex-1 h-10.25 border border-[rgba(215,224,240,1)] mb-4 focus:outline-none text-black px-2" 
                 />
               </div>
             </div>
@@ -240,13 +254,13 @@ const Create = () => {
     }
   };
   return (
-    <div className="w-360 min-h-screen overflow-hidden">
+    <div className="w-full min-h-screen overflow-hidden">
       <nav className="w-full h-24 flex items-center pl-22">
         <Image src={logo} alt="Logo" width={40} height={32} />
         <p className="text-[#C99326] text-[10px]">Imena-pop</p>
       </nav>
       <div className="flex w-full">
-        <form className="w-176.75 pl-27" onSubmit={handleFormSubmit}>
+        <form className="w-176.75 pl-27 pb-10" onSubmit={handleFormSubmit}>
           <ProgressIndicator currentStep={currentStep} totalSteps={3} />
           
           {renderStepContent()}
@@ -269,8 +283,10 @@ const Create = () => {
             </button>
           </div>
         </form>
-        <div className="w-183.25 h-232 bg-[#D7E0F0] flex items-center justify-center">
-         <Image src={template1} alt="template" />
+        <div className="flex-1 min-h-screen bg-[#D7E0F0] flex items-center justify-center sticky top-0">
+         <div className="w-125 aspect-[1/1.414] shadow-2xl">
+            <InvitationPreview data={formData} />
+         </div>
         </div>
         
       </div>

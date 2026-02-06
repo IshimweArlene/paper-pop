@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import logo from "@/public/logo.svg";
 
 const sections = [
@@ -13,6 +14,12 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < 100) {
+        setActiveSection("home");
+      }
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -21,7 +28,10 @@ const Navbar = () => {
           }
         });
       },
-      { threshold: 0.3 , rootMargin: "-78px 0px 0px 0px"}
+      { 
+        threshold: 0.1, 
+        rootMargin: "-30% 0px -30% 0px" 
+      }
     );
 
     sections.forEach((section) => {
@@ -29,7 +39,11 @@ const Navbar = () => {
       if (element) observer.observe(element);
     });
 
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -52,9 +66,11 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      <button className="bg-[#1851C1] w-34.25 h-10.75 rounded-4xl text-[16px] text-white font-bold cursor-pointer ">
-        Templates
-      </button>
+      <Link href="/templates">
+        <button className="bg-[#1851C1] w-34.25 h-10.75 rounded-4xl text-[16px] text-white font-bold cursor-pointer ">
+          Templates
+        </button>
+      </Link>
     </nav>
   );
 };

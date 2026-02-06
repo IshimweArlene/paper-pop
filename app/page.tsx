@@ -7,9 +7,9 @@ export default function Home() {
     <div className="w-360 h-645.75 overflow-hidden mx-auto bg-white ">
       <div className="w-183.5 h-full left-88.25 relative ">
         <section id="home">
-          <div className="w-full h-111 flex justify-center bg-linear-to-b from-[#FFFFFF] to-[#D7E0F0]">
+          <div className="w-full min-h-[444px] h-auto pb-16 flex justify-center bg-linear-to-b from-[#FFFFFF] to-[#D7E0F0]">
             <Navbar />
-            <div className="pt-28 text-center whitespace-break-spaces w-99.75">
+            <div className="pt-32 text-center w-99.75">
               <p className="font-instrument-serif italic text-[48px] text-[#433D3D]">The <span className="text-[#1851C1]">Digital Space</span> for families to <span className="text-[#1851C1]">plan & invite!</span></p>
               <p className="text-lg text-[#433D3D]">Create invitations, plan events, share details, and connect families beautifully</p>
               <Link href={"/create"} >
