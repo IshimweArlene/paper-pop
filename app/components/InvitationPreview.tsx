@@ -65,20 +65,20 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
         <div className="z-10 flex flex-col items-center w-full h-full justify-between pb-20 pt-16 px-16">
             
             <div className="w-full flex flex-col px-4">
-                <h1 className={`font-instrument-serif ${titleSize} text-[#D0DB2D] leading-none break-words w-full text-left`}>
+                <h1 className={`font-instrument-serif ${titleSize} text-[#D0DB2D] leading-none wrap-break-word w-full text-left`}>
                     {data.eventTitle || "Imena"}
                 </h1>
                 <div className="flex justify-center -my-1">
                     <p className="font-alex-brush text-[28px] text-white mt-1">by</p>
                 </div>
-                <h2 className={`font-serif ${hostSize} text-[#D0DB2D] leading-none break-words text-right w-full`}>
+                <h2 className={`font-serif ${hostSize} text-[#D0DB2D] leading-none wrap-break-word text-right w-full`}>
                    {data.hostedBy ? `${data.hostedBy}` : "Light"}
                 </h2>
             </div>
 
             <div className="flex flex-col items-center -my-2 gap-1 w-full text-center">
                 <p className="font-alex-brush text-[28px] text-white">at</p>
-                <p className="font-instrument-serif text-[20px] mb-3 text-[#D0DB2D] break-words">
+                <p className="font-instrument-serif text-[20px] mb-3 text-[#D0DB2D] wrap-break-word">
                     {data.location || "Imena Venue"}
                 </p>
             </div>
@@ -105,7 +105,7 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
                      <ul className={`text-left ${agendasSize} text-gray-200 space-y-0.5 inline-block`}>
                          {data.agendas.length > 0 ? (
                             data.agendas.map((item, i) => (
-                                <li key={i} className="break-words">• {item}</li>
+                                <li key={i} className="wrap-break-word">• {item}</li>
                             ))
                          ) : (
                              <>
@@ -119,7 +119,7 @@ const InvitationPreview = ({ data }: { data: InvitationData }) => {
 
              <div className="flex flex-col items-center w-full">
                 {data.notes && (
-                    <p className={` font-instrument-serif text-[#D0DB2D] leading-tight text-center break-words ${notesSize} w-full`}>
+                    <p className={` font-instrument-serif text-[#D0DB2D] leading-tight text-center wrap-break-word ${notesSize} w-full`}>
                         {data.notes}
                     </p>
                 )}

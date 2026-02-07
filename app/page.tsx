@@ -82,7 +82,9 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-center mt-12 w-full h-44.5 border-b border-[#DBD3D3] ">
             <p className="font-instrument-serif italic text-lg text-black">Ready to start your next chapter?</p>
-            <button className="rounded-[40px] bg-[#1851C1] w-41.75 h-11.5 font-semibold mt-4 cursor-pointer">Get Started</button>
+            <Link href="/create">
+              <button className="rounded-[40px] bg-[#1851C1] w-41.75 h-11.5 font-semibold mt-4 cursor-pointer text-white">Get Started</button>
+            </Link>
           </div>
           <p className="text-[10px] text- text-black mt-11">Created by Imena Dev Team</p>
         </section>

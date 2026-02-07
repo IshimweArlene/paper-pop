@@ -6,6 +6,7 @@ import downloadIcon from '@/public/download.svg'
 import { useEffect, useState, useRef } from "react";
 import InvitationPreview, { InvitationData } from "../components/InvitationPreview";
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
 import { toPng } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 
@@ -16,6 +17,7 @@ const Preview = () => {
     const [shareLink, setShareLink] = useState('');
     const [copied, setCopied] = useState(false);
     const previewRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
@@ -24,8 +26,10 @@ const Preview = () => {
         if (urlData) {
             try {
                 const decoded = JSON.parse(decodeURIComponent(escape(atob(urlData))));
-                setData(decoded);
-                return;
+                if (decoded && decoded.eventTitle) {
+                    setData(decoded);
+                    return;
+                }
             } catch (e) {
                 console.error('Failed to decode URL data', e);
             }
@@ -33,9 +37,19 @@ const Preview = () => {
 
         const stored = localStorage.getItem('invitationData');
         if (stored) {
-            setData(JSON.parse(stored));
+            try {
+                const parsed = JSON.parse(stored);
+                if (parsed && parsed.eventTitle) {
+                    setData(parsed);
+                    return;
+                }
+            } catch (e) {
+                console.error('Failed to parse stored data', e);
+            }
         }
-    }, []);
+        
+        router.replace('/create');
+    }, [router]);
 
     useEffect(() => {
         if (data) {
