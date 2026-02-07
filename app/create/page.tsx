@@ -248,14 +248,14 @@ const Create = () => {
   };
   return (
     <div className="w-full min-h-screen overflow-hidden">
-      <nav className="w-full h-24 flex items-center pl-22">
+      <nav className="w-full h-24 flex items-center px-4 md:pl-22">
         <Link href="/" className="flex items-center gap-4 cursor-pointer group">
           <Image src={logo} alt="Logo" width={40} height={32} className="group-hover:scale-110 transition-transform duration-300" />
           <p className="text-[#C99326] text-[10px] font-bold tracking-widest uppercase group-hover:text-[#1851C1] transition-colors">Imena-pop</p>
         </Link>
       </nav>
-      <div className="flex w-full">
-        <form className="w-176.75 pl-27 pb-10" onSubmit={handleFormSubmit}>
+      <div className="flex w-full flex-col lg:flex-row">
+        <form className="w-full lg:w-[44.1875rem] px-6 md:pl-27 pb-10" onSubmit={handleFormSubmit}>
           <ProgressIndicator currentStep={currentStep} totalSteps={3} />
           
           {renderStepContent()}
@@ -264,7 +264,7 @@ const Create = () => {
               type="button"
               onClick={prevStep}
               disabled={currentStep === 1}
-              className="bg-[#D7E0F0] text-[16px] rounded-[10px] text-black w-46.5 h-11.25 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              className="bg-[#D7E0F0] text-[16px] rounded-[10px] text-black w-32 md:w-46.5 h-11.25 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               Previous
             </button>
@@ -272,19 +272,19 @@ const Create = () => {
               type="button"
               onClick={nextStep}
               disabled={!validateCurrentStep()}
-              className="bg-[#1851C1] rounded-[10px] text-[16px] text-white w-46.5 h-11.25 disabled:cursor-not-allowed cursor-pointer"
+              className="bg-[#1851C1] rounded-[10px] text-[16px] text-white w-32 md:w-46.5 h-11.25 disabled:cursor-not-allowed cursor-pointer"
             >
               {currentStep === 3 ? 'Create Invitation' : 'Next step'}
             </button>
           </div>
         </form>
-        <div className="flex-1 min-h-screen bg-[#D7E0F0] flex items-center justify-center sticky top-0">
-         <div className="w-125 aspect-[1/1.414] shadow-2xl">
+        <div className="flex-1 min-h-[50vh] lg:min-h-screen bg-[#D7E0F0] flex items-center justify-center lg:sticky top-0 p-4">
+         <div className="w-full max-w-[31.25rem] aspect-[1/1.414] shadow-2xl">
             <InvitationPreview data={formData} />
          </div>
         </div>
-        
       </div>
+
       
     </div>
   );

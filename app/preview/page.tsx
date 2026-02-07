@@ -114,13 +114,13 @@ const Preview = () => {
                     <p className="text-[#C99326] text-[10px] font-bold tracking-widest uppercase group-hover:text-[#1851C1] transition-colors">Imena-pop</p>
                 </Link>
             </nav>
-            <div className="pl-51 pr-51 pt-24 pb-24 flex gap-12 items-center justify-center flex-wrap">
-                <div className="flex flex-col">
+            <div className="px-4 md:px-51 pt-12 md:pt-24 pb-12 md:pb-24 flex gap-8 md:gap-12 items-center justify-center flex-wrap">
+                <div className="flex flex-col w-full max-w-[31.25rem]">
                     <Link href="/create" className="flex items-center gap-4 mb-4 cursor-pointer">
                      <p className="text-black font-bold w-1.5">&lt;</p>
                      <p className="text-[10px] text-black">Back to edit</p>
                     </Link>
-                    <div ref={previewRef} className="w-125 aspect-[1/1.414] shadow-2xl">
+                    <div ref={previewRef} className="w-full aspect-[1/1.414] shadow-2xl">
                         {data ? (
                             <InvitationPreview data={data} />
                         ) : (
@@ -130,7 +130,8 @@ const Preview = () => {
                         )}
                     </div>
                 </div>
-                <div className="w-110">
+                <div className="w-full max-w-[27.5rem]">
+
                     <p className="text-black font-medium text-4xl">Your Imena <span className="font-instrument-serif italic text-[#1851C1]">Masterpiece </span> is Ready.</p>
                     <p className="text-[16px] mt-4 text-black" >The layout has been meticulously optimized for high-quality printing. Please review all details before downloading.</p>
                     

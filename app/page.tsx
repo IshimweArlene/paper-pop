@@ -4,8 +4,9 @@ import Navbar from "./components/Navbar";
 import template1 from "../public/template1.png";
 export default function Home() {
   return (
-    <div className="w-360 h-645.75 overflow-hidden mx-auto bg-white ">
-      <div className="w-183.5 h-full left-88.25 relative ">
+    <div className="w-full max-w-[90rem] min-h-screen overflow-hidden mx-auto bg-white ">
+      <div className="w-[95%] max-w-[45.875rem] h-full mx-auto relative ">
+
         <section id="home">
           <div className="w-full min-h-[444px] h-auto pb-16 flex justify-center bg-linear-to-b from-[#FFFFFF] to-[#D7E0F0]">
             <Navbar />

@@ -47,12 +47,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed z-50 flex justify-between items-center pl-8 pr-2 mt-4 w-172 h-15.5 border border-[#DBD3D3] bg-white rounded-full">
+    <nav className="fixed z-50 flex justify-between items-center px-4 md:pl-8 md:pr-2 mt-4 w-[95%] max-w-[43rem] h-15.5 border border-[#DBD3D3] bg-white rounded-full">
       <div className="flex items-center">
         <Image src={logo} alt="Logo" width={40} height={32} />
-        <p className="text-[#C99326] text-[10px]">Imena-pop</p>
+        <p className="text-[#C99326] text-[10px] hidden sm:block">Imena-pop</p>
       </div>
-      <ul className="flex gap-4 text-[15px] font-medium">
+      <ul className="flex gap-2 sm:gap-4 text-[13px] sm:text-[15px] font-medium">
         {sections.map((section) => (
           <li key={section.id}>
             <a
@@ -67,11 +67,12 @@ const Navbar = () => {
         ))}
       </ul>
       <Link href="/templates">
-        <button className="bg-[#1851C1] w-34.25 h-10.75 rounded-4xl text-[16px] text-white font-bold cursor-pointer ">
+        <button className="bg-[#1851C1] px-3 sm:w-34.25 h-10.75 rounded-4xl text-[14px] sm:text-[16px] text-white font-bold cursor-pointer whitespace-nowrap">
           Templates
         </button>
       </Link>
     </nav>
+
   );
 };
 
