@@ -37,7 +37,6 @@ const ShareContent = () => {
 
     return (
         <div className="min-h-screen bg-[#D7E0F0] flex flex-col items-center p-4 md:p-10">
-            {/* Beautiful Back to Home link */}
             <Link href="/" className="mb-8 flex items-center gap-4 bg-white/50 backdrop-blur-md px-6 py-3 rounded-full hover:bg-white transition-all shadow-sm hover:shadow-md cursor-pointer group">
                 <div className="bg-[#C99326] w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold group-hover:bg-[#1851C1] transition-colors">I</div>
                 <div className="flex flex-col">

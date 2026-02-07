@@ -14,13 +14,13 @@ const geistMono = Geist_Mono({
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
-  weight: "400",      
+  weight: "400",
 });
 
 const alexBrush = Alex_Brush({
   variable: "--font-alex-brush",
   subsets: ["latin"],
-  weight: "400",      
+  weight: "400",
 });
 
 const greatVibes = Great_Vibes({

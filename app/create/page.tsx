@@ -7,6 +7,8 @@ import InvitationPreview from "@/app/components/InvitationPreview";
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic';
+
 interface ProgressIndicatorProps {
   currentStep: number;
   totalSteps: number;
@@ -62,18 +64,6 @@ const Create = () => {
     notes: ''
   });
 
-  useEffect(() => {
-    const stored = localStorage.getItem('invitationData');
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        setFormData(parsed);
-      } catch (e) {
-        console.error('Failed to load stored data', e);
-      }
-    }
-  }, []);
-
   const updateFormData = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
@@ -104,7 +94,7 @@ const Create = () => {
       case 2:
         return formData.location.trim() !== '';
       case 3:
-        return true; // No validation needed for step 3 now
+        return true;
       default:
         return true;
     }
@@ -113,9 +103,7 @@ const Create = () => {
   const nextStep = () => {
     console.log('Next step clicked, current step:', currentStep);
     if (currentStep === 3 && validateCurrentStep()) {
-      // Save form data to localStorage before navigating to preview
       localStorage.setItem('invitationData', JSON.stringify(formData));
-      // Navigate to preview page instead of going to step 4
       router.push('/preview');
     } else if (currentStep < 3 && validateCurrentStep()) {
       const newStep = currentStep + 1;
@@ -149,12 +137,14 @@ const Create = () => {
             <p className="text-[16px] text-black">Event Title</p>
             <input 
               value={formData.eventTitle}
+              placeholder="Event Title ..."
               onChange={(e) => updateFormData('eventTitle', e.target.value)}
               className="w-[414px] h-10.25 border border-[rgba(215,224,240,1)] mb-4 focus:outline-none text-black" 
             />
             <p className="text-[16px] text-black">Hosted By</p>
             <input 
               value={formData.hostedBy}
+              placeholder="Hosted By"
               onChange={(e) => updateFormData('hostedBy', e.target.value)}
               className="w-[414px] h-10.25 border border-[rgba(215,224,240,1)] mb-12 focus:outline-none text-black" 
             />
@@ -190,6 +180,7 @@ const Create = () => {
             <p className="text-[16px] text-black">Location</p>
             <input 
               value={formData.location}
+              placeholder="Location ..."
               onChange={(e) => updateFormData('location', e.target.value)}
               className="w-[414px] h-10.25 border border-[rgba(215,224,240,1)] mb-12 focus:outline-none text-black" 
             />
@@ -204,6 +195,7 @@ const Create = () => {
             <p className="text-[16px] text-black">Description</p>
             <textarea 
               value={formData.notes}
+              placeholder="Add notes ..."
               onChange={(e) => updateFormData('notes', e.target.value)}
               className="w-[414px] h-27.75 border border-[rgba(215,224,240,1)] mb-4 resize-none focus:outline-none text-black"
             ></textarea>

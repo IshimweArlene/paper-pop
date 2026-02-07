@@ -4,27 +4,29 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/logo.svg";
 import template1 from "@/public/template1.png";
+import template2 from '@/public/template2.png'
+
 
 const templates = [
   {
     id: 'classic-dark',
     name: 'Classic Imena Dark',
     description: 'The signature deep blue and gold aesthetic for formal family gatherings.',
-    image: template1,
+    image: template2,
     category: 'Formal'
   },
   {
     id: 'modern-white',
     name: 'Modern Grace',
     description: 'A clean, minimalist white layout with elegant typography.',
-    image: template1, // Placeholder since we only have one for now
+    image: template1,
     category: 'Minimalist'
   },
   {
     id: 'vibrant-gold',
     name: 'Celebration Gold',
     description: 'Premium gold accents on a cream background for joyous celebrations.',
-    image: template1, // Placeholder
+    image: template2,
     category: 'Festive'
   }
 ];
@@ -55,7 +57,7 @@ export default function TemplatesPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {templates.map((template) => (
-            <div key={template.id} className="group bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col border border-white hover:border-[#1851C1]/20">
+            <div key={template.id} className="group bg-white rounded-4xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col border border-white hover:border-[#1851C1]/20">
               <div className="relative aspect-[1/1.4] overflow-hidden bg-gray-100">
                 <Image 
                   src={template.image} 

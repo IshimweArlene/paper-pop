@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { toPng } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 
+export const dynamic = 'force-dynamic';
+
 const Preview = () => {
     const [data, setData] = useState<InvitationData | null>(null);
     const [shareLink, setShareLink] = useState('');
@@ -16,7 +18,6 @@ const Preview = () => {
     const previewRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // First check URL for data (for shared links)
         const params = new URLSearchParams(window.location.search);
         const urlData = params.get('data');
         
@@ -30,7 +31,6 @@ const Preview = () => {
             }
         }
 
-        // Fallback to localStorage (for the creator)
         const stored = localStorage.getItem('invitationData');
         if (stored) {
             setData(JSON.parse(stored));
@@ -54,6 +54,13 @@ const Preview = () => {
         navigator.clipboard.writeText(shareLink);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
+    };
+
+    const handleStartNew = () => {
+        if (confirm('Are you sure you want to start a new invitation? This will clear your current progress.')) {
+            localStorage.removeItem('invitationData');
+            window.location.href = '/create';
+        }
     };
 
     const handleDownloadPDF = async () => {
@@ -89,8 +96,8 @@ const Preview = () => {
         <div className="bg-[#D7E0F0] min-h-screen w-full">
             <nav className="w-full h-24 flex items-center gap-4 border-b border-[#DBD3D3] pl-22">
                 <Link href="/" className="flex items-center gap-4 cursor-pointer group">
-                  <Image src={logo} alt="Logo" width={40} height={32} className="group-hover:scale-110 transition-transform duration-300" />
-                  <p className="text-[#C99326] text-[10px] font-bold tracking-widest uppercase group-hover:text-[#1851C1] transition-colors">Imena-pop</p>
+                    <Image src={logo} alt="Logo" width={40} height={32} className="group-hover:scale-110 transition-transform duration-300" />
+                    <p className="text-[#C99326] text-[10px] font-bold tracking-widest uppercase group-hover:text-[#1851C1] transition-colors">Imena-pop</p>
                 </Link>
             </nav>
             <div className="pl-51 pr-51 pt-24 pb-24 flex gap-12 items-center justify-center flex-wrap">
