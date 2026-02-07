@@ -44,8 +44,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${greatVibes.variable} ${alexBrush.variable} antialiased`}
       >
-        {children}
+        <div className="w-full overflow-x-hidden flex justify-center">
+          <div className="flex-shrink-0">
+            {children}
+          </div>
+        </div>
       </body>
+
+
     </html>
   );
 }
