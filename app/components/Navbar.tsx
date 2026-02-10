@@ -12,9 +12,11 @@ const sections = [
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
       if (window.scrollY < 100) {
         setActiveSection("home");
       }
@@ -47,7 +49,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed z-50 flex justify-between items-center px-4 md:pl-8 md:pr-2 mt-4 w-[95%] max-w-[43rem] h-15.5 border border-[#DBD3D3] bg-white rounded-full">
+    <nav className={`fixed z-50 flex justify-between items-center px-4 md:pl-8 md:pr-2 mt-4 w-[95%] max-w-[43rem] h-15.5 border transition-all duration-300 rounded-full ${
+      isScrolled 
+        ? "bg-white/30 backdrop-blur-md border-[#DBD3D3]/50 shadow-sm" 
+        : "bg-white border-[#DBD3D3]"
+    }`}>
       <div className="flex items-center">
         <Image src={logo} alt="Logo" width={40} height={32} />
         <p className="text-[#C99326] text-[10px] hidden sm:block">Imena-pop</p>

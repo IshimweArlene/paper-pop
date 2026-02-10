@@ -106,6 +106,28 @@ const Preview = () => {
         }
     };
 
+    const handleDownloadPNG = async () => {
+        if (!previewRef.current) return;
+
+        try {
+            await document.fonts.ready;
+            
+            const dataUrl = await toPng(previewRef.current, { 
+                quality: 1.0,
+                pixelRatio: 4, // Higher pixel ratio for better PNG quality
+                cacheBust: true,
+            });
+            
+            const link = document.createElement('a');
+            link.download = `imena-invitation-${data?.eventTitle || 'event'}.png`;
+            link.href = dataUrl;
+            link.click();
+        } catch (error) {
+            console.error('Error generating PNG:', error);
+            alert('Failed to generate PNG. Please try again.');
+        }
+    };
+
     return (
         <div className="bg-[#D7E0F0] min-h-screen w-full">
             <nav className="w-full h-24 flex items-center gap-4 border-b border-[#DBD3D3] pl-22">
@@ -141,6 +163,14 @@ const Preview = () => {
                     >
                         <Image src={downloadIcon} alt="download" />
                         <p className="text-black text-[16px]">Download as PDF</p>
+                    </div>
+
+                    <div 
+                        onClick={handleDownloadPNG}
+                        className="flex bg-[#CBCFE6] w-108.5 h-19.5 mt-4 items-center rounded-[20px] pl-4.25 gap-3 cursor-pointer hover:bg-[#b8bccf] transition-colors"
+                    >
+                        <Image src={downloadIcon} alt="download" />
+                        <p className="text-black text-[16px]">Download as PNG</p>
                     </div>
 
                     <div className="mt-4">

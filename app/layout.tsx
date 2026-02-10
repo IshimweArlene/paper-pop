@@ -44,10 +44,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${greatVibes.variable} ${alexBrush.variable} antialiased`}
       >
-        <div className="w-full overflow-x-hidden flex justify-center">
+        <div className="w-full overflow-x-hidden flex flex-col items-center">
           <div className="flex-shrink-0">
             {children}
           </div>
+          <p className="text-[10px] text-black mt-12 mb-8 text-center">Created by Imena Dev Team</p>
         </div>
       </body>
 

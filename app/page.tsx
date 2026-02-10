@@ -87,10 +87,8 @@ export default function Home() {
               <button className="rounded-[40px] bg-[#1851C1] w-41.75 h-11.5 font-semibold mt-4 cursor-pointer text-white">Get Started</button>
             </Link>
           </div>
-          <p className="text-[10px] text- text-black mt-11">Created by Imena Dev Team</p>
         </section>
       </div>
-     
     </div>
   );
 }
